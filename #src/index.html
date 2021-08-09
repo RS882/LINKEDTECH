@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>LINKEDTECH</title>
+	<!--подключение иконочного шрифта -->
+	<!--<link rel="stylesheet" href="css/iconfont.css">-->
+
+	<!--подключение стилей слайдера swiper -->
+	<!--файл-->
+	<!--<link rel="stylesheet" href="css/swiper.min.css">-->
+	<!--внешний файл-->
+	<!--<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />-->
+
+	<!-- иконка  -->
+	<!--<link rel="shortcut icon" href="img/favicon.ico">-->
+
+	<link rel="stylesheet" href="css/style.css" />
+
+	<meta charset="UTF-8">
+	<!--Поддержка IE  -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- Настройки адаптивности страницы  -->
+	<!-- Адаптивность  
+	ширина по ширине экарана. масштаб 100%. польователь не маштабирует. макс маштаб 100%-->
+
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+
+
+	<!--Блокировка автораспознания номера телефона-->
+	<meta name="format-detection" content="telephone=no">
+
+</head>
+
+<body>
+	<div class="wrapper">
+		@@include('_header.html')
+
+		<main class="page">
+			@@include('_main.html')
+			@@include('_brands.html')
+			@@include('_about.html')
+		</main>
+		@@include('_footer.html')
+
+
+	</div>
+	@@include('_modal-img.html')
+	<!--@@include('_popup.html')-->
+	@@include('_js.html')
+</body>
+
+</html>

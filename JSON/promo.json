@@ -1,0 +1,47 @@
+{
+	"item1": {
+		"src": "img/Rectangle39.png",
+		"size": {
+			"width": "263",
+			"height": "248"
+		},
+		"alt": "speaker",
+		"title": "Always in style!",
+		"descr": "The standard chunk of Lorem Ipsum below for those interested. The standard chunk of for those interested. lorem",
+		"price": "249.99",
+		"salePrice": "249.99",
+		"parentSelector": ".promo",
+		"stars": "4",
+		"classes": [
+			"first"
+		]
+	},
+	"item2": {
+		"src": "img/Rectangle53.png",
+		"size": {},
+		"alt": "speaker",
+		"title": "Always in style!",
+		"descr": "The standard chunk of Lorem Ipsum below for those interested. The standard chunk of for those interested. lorem",
+		"price": "249.99",
+		"salePrice": "249.99",
+		"parentSelector": ".promo",
+		"stars": "4"
+	},
+	"item1": {
+		"src": "img/Rectangle39.png",
+		"size": {
+			"width": "263",
+			"height": "248"
+		},
+		"alt": "speaker",
+		"title": "Always in style!",
+		"descr": "The standard chunk of Lorem Ipsum below for those interested. The standard chunk of for those interested. lorem",
+		"price": "249.99",
+		"salePrice": "249.99",
+		"parentSelector": ".promo",
+		"stars": "4",
+		"classes": [
+			"first"
+		]
+	},
+}

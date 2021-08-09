@@ -1,0 +1,132 @@
+.main {
+	flex: 1 0 100vh;
+	position: relative;
+
+	&__container {
+	}
+
+	&__body {
+		padding-top: 90px;
+		min-height: 100vh;
+
+		@media (min-width: $md3+px) {
+			display: grid;
+			grid-template-rows: 1fr;
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	&__text {
+	}
+
+	&__img {
+	}
+}
+
+.text-main {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+
+	&__subtitle {
+		font-weight: 500;
+		line-height: 26px/16px * 100%;
+		letter-spacing: 0.145em;
+		text-transform: uppercase;
+		color: $redcolor;
+		opacity: 0.6;
+		padding-bottom: 10px;
+		z-index: 4;
+	}
+	&__title {
+		@include adaptiv-value("font-size", 61, 40, 1);
+		line-height: 120%;
+		z-index: 4;
+		@include adaptiv-value("padding-bottom", 30, 20, 1);
+		span {
+			font-weight: 600;
+			display: inline-block;
+			color: $bluecolor;
+			background-color: $blueLigthColor;
+			padding: 0px 10px;
+			margin-left: -10px;
+		}
+	}
+
+	&__text {
+		flex: 1 1 auto;
+		max-height: 150px;
+		overflow: auto;
+		font-size: 20px;
+		line-height: 135%;
+		color: rgba($color: $maincolor, $alpha: 0.6);
+		@include adaptiv-value("margin-bottom", 30, 20, 1);
+		z-index: 4;
+	}
+
+	&__action {
+		display: flex;
+		align-items: center;
+		@include adaptiv-value("padding-bottom", 73, 20, 1);
+		z-index: 4;
+	}
+
+	&__btn {
+		@include adaptiv-value("width", 151, 100, 1);
+		@include adaptiv-value("height", 58, 40, 1);
+		background-color: $bluecolor;
+		color: #fff;
+		font-weight: 600;
+		line-height: 26px/16px * 100%;
+		text-transform: uppercase;
+		margin-right: 30px;
+		transition: transform 0.3s ease 0s;
+
+		@media (any-hover: hover) {
+			&:hover {
+				transform: scale(1.2);
+			}
+		}
+	}
+
+	&__price {
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 135%;
+		padding-right: 18px;
+	}
+
+	&__discout {
+		font-weight: 300;
+		line-height: 169%;
+		text-decoration-line: line-through;
+		color: rgba($color: $maincolor, $alpha: 0.5);
+	}
+}
+.img {
+	pointer-events: none;
+
+	@media (min-width: $md3+px) {
+		position: relative;
+	}
+	@media (max-width: $md3+px) {
+		opacity: 0.3;
+	}
+	&__wrapper {
+		position: absolute;
+		top: 0;
+		left: 5px;
+		height: 100%;
+		width: 643/570 * 100%;
+		@media (max-width: $md2+px) {
+			width: 100%;
+			left: 0;
+		}
+		@media (max-width: $md3+px) {
+			top: 20%;
+			left: 0;
+		}
+	}
+	&__img {
+	}
+}

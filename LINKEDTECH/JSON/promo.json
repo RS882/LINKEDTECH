@@ -1,0 +1,55 @@
+{
+	"promo_item1": {
+		"src": "img/Rectangle39.png",
+		"size": {
+			"width": "263",
+			"height": "248"
+		},
+		"alt": "speaker",
+		"title": "Always in style!",
+		"descr": "The standard chunk of Lorem Ipsum below for those interested. The standard chunk of for those interested. lorem",
+		"price": "249.99",
+		"salePrice": "249.99",
+		"parentSelector": ".promo",
+		"stars": "3",
+		"classes": [
+			"first"
+		]
+	},
+	"promo_item2": {
+		"src": "img/Rectangle53.png",
+		"size": {},
+		"alt": "speaker",
+		"title": "Always in style!",
+		"descr": "The standard chunk of Lorem Ipsum below for those interested. The standard chunk of for those interested. lorem",
+		"price": "249.99",
+		"salePrice": "249.99",
+		"parentSelector": ".promo",
+		"stars": "2"
+	},
+	"show_item1": {
+		"src": "img/463836_preview1.png",
+		"size": {
+			"width": "270",
+			"height": "208"
+		},
+		"alt": "camera",
+		"title": "THE 4K HDR COMPACT Camera",
+		"sale": "30",
+		"parentSelector": ".show"
+	},
+	"show_item2": {
+		"src": "img/packanafi.png",
+		"size": {
+			"width": "352",
+			"height": "334"
+		},
+		"alt": "dron",
+		"title": "THE 4K HDR COMPACT DRONE",
+		"sale": "20",
+		"parentSelector": ".show",
+		"classes": [
+			"first"
+		]
+	}
+}
