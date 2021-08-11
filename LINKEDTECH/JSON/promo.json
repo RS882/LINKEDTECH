@@ -7,7 +7,6 @@
 		},
 		"alt": "speaker",
 		"title": "Always in style!",
-		"sale": "",
 		"descr": "The standard chunk of Lorem Ipsum below for those interested. The standard chunk of for those interested. lorem",
 		"price": "249.99",
 		"salePrice": "249.99",
@@ -22,7 +21,6 @@
 		"size": {},
 		"alt": "speaker",
 		"title": "Always in style!",
-		"sale": "",
 		"descr": "The standard chunk of Lorem Ipsum below for those interested. The standard chunk of for those interested. lorem",
 		"price": "249.99",
 		"salePrice": "249.99",
@@ -38,11 +36,7 @@
 		"alt": "camera",
 		"title": "THE 4K HDR COMPACT Camera",
 		"sale": "30",
-		"descr": "",
-		"price": "",
-		"salePrice": "",
 		"parentSelector": ".show",
-		"stars": "",
 		"classes": [
 			"first"
 		]
@@ -56,10 +50,6 @@
 		"alt": "dron",
 		"title": "THE 4K HDR COMPACT DRONE",
 		"sale": "20",
-		"descr": "",
-		"price": "",
-		"salePrice": "",
-		"parentSelector": ".show",
-		"stars": ""
+		"parentSelector": ".show"
 	}
 }

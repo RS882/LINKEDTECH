@@ -4,6 +4,7 @@ class ItemOffer {
 		size,
 		alt,
 		title,
+		name,
 		descr,
 		sale,
 		price,
@@ -13,6 +14,7 @@ class ItemOffer {
 		classes }) {
 		this.item = item;
 		this.src = src;
+		this.name = name;
 		this.size = {
 			width: (!size.width) ? "263" : size.width,
 			height: (!size.height) ? "248" : size.height,
