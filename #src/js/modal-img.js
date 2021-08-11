@@ -7,7 +7,7 @@ function modalImg(elem, startModal) {
 		modal.classList.add(`_show`, `_fade`);
 		document.querySelector('body').classList.toggle(`_lock`);
 
-	} else if (elem && (!elem.dataset.data || elem.classList.contains(`modal-img__close`))) {
+	} else if (elem && (elem.getAttribute('data-data') !== `` || elem.classList.contains(`modal-img__close`))) {
 		modal.classList.remove(`_show`, `_fade`);
 		document.querySelector('body').classList.remove(`_lock`);
 		modal.firstElementChild.lastElementChild.remove();

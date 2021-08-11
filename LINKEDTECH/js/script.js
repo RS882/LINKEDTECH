@@ -58,7 +58,7 @@ class PromoItem {
 					<button type="button" class="img-promo__scale _icon-magnifier"></button>
 				</div>
 
-				<img data-data="modal" src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
+				<img data-data src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
 			</div>
 		</div>
 		<div class="cart-promo__descr descr">
@@ -127,27 +127,20 @@ class ShowItem {
 
 
 
-function getJson(url) {
-	const request = new XMLHttpRequest();
-	request.open('GET', url);
-	request.setRequestHeader('Content-type', 'application/json');
-	request.send();
-	request.addEventListener(`load`, () => {
-		if (request.readyState === 4 && request.status === 200) {
-			const rez = request.response;
-			parsePromoDate(rez);
-		}
 
-	});
 
-}
+fetch('json/promo.json')
+	.then(response => response.json())
+	.then(json => parsePromoDate(json));
+
+
 function parsePromoDate(json) {
-	const obj = JSON.parse(json);
-	for (const item in obj) {
+
+	for (const item in json) {
 		if (item.includes(`promo`)) {
-			new PromoItem(obj[item]).render();
+			new PromoItem(json[item]).render();
 		} else if (item.includes(`show`)) {
-			new ShowItem(obj[item]).render();
+			new ShowItem(json[item]).render();
 		}
 
 	}
@@ -168,7 +161,6 @@ function stars() {
 }
 
 
-getJson('json/promo.json');
 
 
 
@@ -591,7 +583,7 @@ function modalImg(elem, startModal) {
 		modal.classList.add(`_show`, `_fade`);
 		document.querySelector('body').classList.toggle(`_lock`);
 
-	} else if (elem && (!elem.dataset.data || elem.classList.contains(`modal-img__close`))) {
+	} else if (elem && (elem.getAttribute('data-data') !== `` || elem.classList.contains(`modal-img__close`))) {
 		modal.classList.remove(`_show`, `_fade`);
 		document.querySelector('body').classList.remove(`_lock`);
 		modal.firstElementChild.lastElementChild.remove();
