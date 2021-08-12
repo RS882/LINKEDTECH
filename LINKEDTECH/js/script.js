@@ -114,16 +114,26 @@ function stars() {
 		}
 	});
 }
+//=======
+const getJson = async (url) => {
+	const res = await fetch(url);
+	if (!res.ok) {// если сервер выдал ошибку - выводм в консоль сообщение
+		throw new Error(`Could not fetch ${url}, status ${res.status}`)
+	}
+	return await res.json();
+}
 
-fetch('json/promo.json')
-	.then(response => response.json())
+getJson('json/db.json')
 	.then(json => {
 		for (const item in json) {
-			new ItemOffer(item, json[item]).render();
+			json[item].forEach(obj => {
+				new ItemOffer(item, obj).render();
+			});
 		}
 	})
 	.catch()
 	.finally(() => stars());
+
 
 
 
