@@ -125,26 +125,37 @@
 		padding-bottom: 20px;
 	}
 
-	&__price {
-		font-weight: 500;
-		line-height: 169%;
+	&__prices {
+		display: flex;
+		flex-wrap: wrap;
 		padding-bottom: 15px;
-		p {
-			display: inline-block;
-			opacity: 0.5;
-			text-decoration: line-through;
-		}
-		span {
-			opacity: 0.5;
-		}
 	}
 
 	&__stars {
-		display: flex;
-		color: $blueLigthColor;
 	}
 }
 
+//=======================
+.prices {
+	&__price {
+		font-style: normal;
+		font-weight: 500;
+		line-height: 169%;
+		padding-right: 5px;
+	}
+	&__price--old {
+		opacity: 0.5;
+
+		span {
+			text-decoration: line-through;
+		}
+	}
+}
+.stars {
+	display: flex;
+	color: $blueLigthColor;
+}
+//=====
 .img-promo {
 	&__wrapper {
 		position: absolute;

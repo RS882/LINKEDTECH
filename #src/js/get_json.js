@@ -54,10 +54,11 @@ class ItemOffer {
 			<div class="cart-promo__descr descr">
 				<h3 class="descr__title">${this.title}</h3>
 				<div class="descr__text">${this.descr}</div>
-				<div class="descr__price">$ ${this.price} <span>/</span>
-					<p>$ ${this.salePrice}</p>
+				<div class="descr__prices prices">
+					<div class="prices__price">$ ${this.price} </div>
+					<div class="prices__price prices__price--old"> / <span>$ ${this.salePrice}</span> </div>
 				</div>
-				<div data-star = "${this.stars}" class="descr__stars">
+				<div data-star = "${this.stars}" class="descr__stars stars">
 					<span class="_icon-star"></span>
 					<span class="_icon-star"></span>
 					<span class="_icon-star"></span>
