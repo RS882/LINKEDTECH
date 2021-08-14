@@ -16,17 +16,26 @@
 	}
 
 	&__tabs {
-		border: 1px solid rgb(202, 19, 19);
 		max-width: 500px;
 		padding: 0px 5px;
 		@include adaptiv-value("margin-bottom", 50, 15, 1);
 		display: flex;
 		justify-content: space-between;
+		@media (max-width: $md3+px) {
+			flex-direction: column;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
+		}
 	}
 
 	&__tab-link {
 		&:not(:last-child) {
 			@include adaptiv-value("padding-right", 40, 15, 1);
+			@media (max-width: $md3+px) {
+				padding-right: 0;
+				margin-bottom: 10px;
+			}
 		}
 	}
 
@@ -98,11 +107,28 @@
 		@include adaptiv-value("padding", 35, 10, 1);
 		display: flex;
 		flex-direction: column;
-		border: 1px solid #000;
+
+		cursor: pointer;
+
+		@media (any-hover: hover) {
+			&:hover {
+				.actions-product {
+					opacity: 1;
+					visibility: visible;
+					transform: translate(0px, 0px);
+				}
+			}
+		}
+		@media (any-hover: none) {
+			background-color: #fafafa;
+		}
 	}
 
 	&__content {
 		flex: 1 1 auto;
+		@media (any-hover: none) {
+			z-index: 4;
+		}
 	}
 
 	&__name {
@@ -116,15 +142,56 @@
 		flex: 1 1 auto;
 		display: flex;
 		flex-wrap: wrap;
+		@media (any-hover: none) {
+			z-index: 4;
+		}
 	}
 
 	&__stars {
+		@media (any-hover: none) {
+			z-index: 4;
+		}
 	}
 
 	&__actions {
 	}
+	&__change-colors {
+		position: absolute;
+		@include adaptiv-value("bottom", 35, 10, 1);
+		@include adaptiv-value("right", 35, 10, 1);
+		width: 150px / 360px * 100%;
+
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		align-items: center;
+		padding: 10px 5px 0 5px;
+	}
 
 	&__change-color {
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background-color: $redcolor;
+		margin-bottom: 10px;
+		position: relative;
+		&:not(:last-child) {
+			margin-right: 20px;
+			margin-bottom: 10px;
+		}
+		&._active {
+			&::before {
+				content: "";
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				border: 0.5px solid $maincolor;
+				top: 0;
+				left: 0;
+				border-radius: 50%;
+				transform: translate(-3px, -3px);
+			}
+		}
 	}
 
 	&__change-color--1 {
@@ -138,19 +205,63 @@
 }
 
 .actions-product {
-	display: none;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease 0s;
+	transform: translate(0px, 10px);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+
+	background-color: #fafafa;
+	@media (any-hover: none) {
+		opacity: 1;
+		visibility: visible;
+		transform: translate(0px, -60px);
+		background-color: inherit;
+		height: calc(100% + 60px);
+	}
+
 	&__body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100%;
+		@include adaptiv-value("padding", 30, 10, 1);
 	}
 
 	&__links {
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: space-between;
 	}
 
 	&__link {
+		align-self: flex-start;
+		color: inherit;
+		font-size: 18px;
+		transition: color, transform 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover {
+				color: $bluecolor;
+				transform: scale(1.4);
+			}
+		}
 	}
 
 	&__prices {
+		display: flex;
+		flex-wrap: wrap;
+		@media (any-hover: none) {
+			display: none;
+		}
 	}
 
 	&__stars {
+		font-size: 12px;
+		@media (any-hover: none) {
+			display: none;
+		}
 	}
 }

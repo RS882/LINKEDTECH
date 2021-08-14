@@ -413,7 +413,7 @@
 
 .title {
 	font-weight: 600;
-	font-size: 44px;
+	@include adaptiv-value("font-size", 44, 30, 1);
 	line-height: 71/44 * 100%;
 	text-transform: capitalize;
 }
