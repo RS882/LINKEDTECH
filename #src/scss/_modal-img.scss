@@ -32,7 +32,8 @@
 		right: 0px;
 
 		font-size: 30px;
-		color: rgba($color: $blueLigthColor, $alpha: 0.5);
+		color: rgba($color: $maincolor, $alpha: 0.7);
+		background-color: $blueLigthColor;
 		cursor: pointer;
 		z-index: 12;
 		transition: color, background-color 0.3s ease 0s;

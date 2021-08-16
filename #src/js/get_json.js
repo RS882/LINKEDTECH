@@ -47,8 +47,11 @@ class ItemOffer {
 					<div class="img-promo__wrapper">
 						<button type="button" class="img-promo__scale _icon-magnifier"></button>
 					</div>
-	
-					<img data-data src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
+					<picture>
+						<source srcset=${this.src} type="image/webp">
+						<img data-data="" src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
+					</picture>
+					
 				</div>
 			</div>
 			<div class="cart-promo__descr descr">
@@ -77,7 +80,10 @@ class ItemOffer {
 						<button type="button" class="show__btn">Show Now</button>
 					</div>
 					<div class="show__img _ibg">
+					<picture>
+						<source srcset=${this.src} type="image/webp">
 						<img src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
+					</picture>
 					</div>
 				</div>
 		`;

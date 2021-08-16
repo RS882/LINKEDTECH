@@ -1,15 +1,18 @@
-function modalImg(elem, startModal) {
-	const modal = document.querySelector('.modal-img');
+function modalShow(target, parent) {
 
-	if (elem && elem.classList.contains(startModal)) {
-		const img = elem.parentElement.nextElementSibling.cloneNode(true);
-		modal.firstElementChild.append(img);
-		modal.classList.add(`_show`, `_fade`);
-		document.querySelector('body').classList.toggle(`_lock`);
+	const img = target.closest(parent).querySelector(`img`).cloneNode(true),
+		modal = document.querySelector('.modal-img'),
+		body = document.querySelector('body');
+	modal.firstElementChild.append(img);
+	modal.classList.add(`_show`, `_fade`);
+	body.classList.toggle(`_lock`);
 
-	} else if (elem && (elem.getAttribute('data-data') !== `` || elem.classList.contains(`modal-img__close`))) {
-		modal.classList.remove(`_show`, `_fade`);
-		document.querySelector('body').classList.remove(`_lock`);
-		modal.firstElementChild.lastElementChild.remove();
-	}
+	modal.addEventListener('click', (e) => {
+		const target = e.target;
+		if (target && (target.getAttribute('data-data') !== `` || target.classList.contains(`modal-img__close`))) {
+			modal.classList.remove(`_show`, `_fade`);
+			body.classList.remove(`_lock`);
+			modal.querySelector(`img`).remove();
+		}
+	})
 }

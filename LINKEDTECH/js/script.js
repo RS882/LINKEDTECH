@@ -64,8 +64,11 @@ class ItemOffer {
 					<div class="img-promo__wrapper">
 						<button type="button" class="img-promo__scale _icon-magnifier"></button>
 					</div>
-	
-					<img data-data src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
+					<picture>
+						<source srcset=${this.src} type="image/webp">
+						<img data-data="" src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
+					</picture>
+					
 				</div>
 			</div>
 			<div class="cart-promo__descr descr">
@@ -94,7 +97,10 @@ class ItemOffer {
 						<button type="button" class="show__btn">Show Now</button>
 					</div>
 					<div class="show__img _ibg">
+					<picture>
+						<source srcset=${this.src} type="image/webp">
 						<img src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
+					</picture>
 					</div>
 				</div>
 		`;
@@ -554,20 +560,23 @@ document.addEventListener('keydown', function (e) {
 	}
 });
 
-function modalImg(elem, startModal) {
-	const modal = document.querySelector('.modal-img');
+function modalShow(target, parent) {
 
-	if (elem && elem.classList.contains(startModal)) {
-		const img = elem.parentElement.nextElementSibling.cloneNode(true);
-		modal.firstElementChild.append(img);
-		modal.classList.add(`_show`, `_fade`);
-		document.querySelector('body').classList.toggle(`_lock`);
+	const img = target.closest(parent).querySelector(`img`).cloneNode(true),
+		modal = document.querySelector('.modal-img'),
+		body = document.querySelector('body');
+	modal.firstElementChild.append(img);
+	modal.classList.add(`_show`, `_fade`);
+	body.classList.toggle(`_lock`);
 
-	} else if (elem && (elem.getAttribute('data-data') !== `` || elem.classList.contains(`modal-img__close`))) {
-		modal.classList.remove(`_show`, `_fade`);
-		document.querySelector('body').classList.remove(`_lock`);
-		modal.firstElementChild.lastElementChild.remove();
-	}
+	modal.addEventListener('click', (e) => {
+		const target = e.target;
+		if (target && (target.getAttribute('data-data') !== `` || target.classList.contains(`modal-img__close`))) {
+			modal.classList.remove(`_show`, `_fade`);
+			body.classList.remove(`_lock`);
+			modal.querySelector(`img`).remove();
+		}
+	})
 }
 
 
@@ -620,9 +629,19 @@ function documentActions(e) {
 	}
 	//================
 	// модальное окно просмотр изображения
-	modalImg(targetElem, `img-promo__scale`);
+
+	if (targetElem && targetElem.classList.contains(`actions-product__link--scale`)) {
+		e.preventDefault();
+		modalShow(targetElem, `.item-card`);
+
+	}
+	if (targetElem && targetElem.classList.contains(`img-promo__scale`)) {
+		e.preventDefault();
+		modalShow(targetElem, `.img-promo`);
+	}
 
 }
+
 
 //let btn = document.querySelectorAll('button[type="submit"],input[type="submit"]');
 let forms = document.querySelectorAll('form');

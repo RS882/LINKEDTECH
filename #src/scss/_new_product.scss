@@ -56,9 +56,30 @@
 		@include adaptiv-value("gap", 30, 10, 1);
 		width: 100%;
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		@include adaptiv-value("margin-bottom", 56, 20, 1);
 	}
 
 	&__cart-item {
+	}
+	&__view-all {
+		font-weight: 600;
+		line-height: 23px/14px * 100%;
+		text-transform: uppercase;
+		color: inherit;
+		display: flex;
+		align-items: center;
+		transition: color, transform 0.3s ease 0s;
+		@include adaptiv-value("margin-bottom", 146, 30, 1);
+		span {
+			margin-left: 10px;
+			opacity: 0.6;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: $bluecolor;
+				transform: scale(1.4);
+			}
+		}
 	}
 }
 
@@ -207,10 +228,11 @@
 .actions-product {
 	opacity: 0;
 	visibility: hidden;
-	transition: all 0.3s ease 0s;
+
 	transform: translate(0px, 10px);
 	position: absolute;
 	width: 100%;
+	transition: all 0.3s ease 0s;
 	height: 100%;
 	top: 0;
 	left: 0;

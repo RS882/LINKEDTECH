@@ -48,6 +48,16 @@ function documentActions(e) {
 	}
 	//================
 	// модальное окно просмотр изображения
-	modalImg(targetElem, `img-promo__scale`);
+
+	if (targetElem && targetElem.classList.contains(`actions-product__link--scale`)) {
+		e.preventDefault();
+		modalShow(targetElem, `.item-card`);
+
+	}
+	if (targetElem && targetElem.classList.contains(`img-promo__scale`)) {
+		e.preventDefault();
+		modalShow(targetElem, `.img-promo`);
+	}
 
 }
+

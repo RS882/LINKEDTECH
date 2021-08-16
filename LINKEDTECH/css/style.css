@@ -465,7 +465,8 @@ body.ie ._ibg img {
   top: 0px;
   right: 0px;
   font-size: 30px;
-  color: rgba(244, 249, 252, 0.5);
+  color: rgba(3, 13, 21, 0.7);
+  background-color: #f4f9fc;
   cursor: pointer;
   z-index: 12;
   -webkit-transition: color, background-color 0.3s ease 0s;
@@ -1774,6 +1775,31 @@ body.ie ._ibg img {
   gap: 30px;
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-bottom: 56px;
+}
+
+.new-product__view-all {
+  font-weight: 600;
+  line-height: 164.2857142857%;
+  text-transform: uppercase;
+  color: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: color, -webkit-transform 0.3s ease 0s;
+  transition: color, -webkit-transform 0.3s ease 0s;
+  -o-transition: color, transform 0.3s ease 0s;
+  transition: color, transform 0.3s ease 0s;
+  transition: color, transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  margin-bottom: 146px;
+}
+
+.new-product__view-all span {
+  margin-left: 10px;
+  opacity: 0.6;
 }
 
 .item-card {
@@ -1925,14 +1951,14 @@ body.ie ._ibg img {
 .actions-product {
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
   -webkit-transform: translate(0px, 10px);
       -ms-transform: translate(0px, 10px);
           transform: translate(0px, 10px);
   position: absolute;
   width: 100%;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
   height: 100%;
   top: 0;
   left: 0;
@@ -2285,6 +2311,14 @@ body.ie ._ibg img {
 
   .new-product__items {
     gap: calc(10px + 20 * ((100vw - 320px) / 850));
+  }
+
+  .new-product__items {
+    margin-bottom: calc(20px + 36 * ((100vw - 320px) / 850));
+  }
+
+  .new-product__view-all {
+    margin-bottom: calc(30px + 116 * ((100vw - 320px) / 850));
   }
 
   .item-card__labels {
@@ -2747,6 +2781,13 @@ body.ie ._ibg img {
     border-radius: 10px;
     background-color: #f4f9fc;
     border: 1px solid #247cc0;
+  }
+
+  .new-product__view-all:hover {
+    color: #247cc0;
+    -webkit-transform: scale(1.4);
+        -ms-transform: scale(1.4);
+            transform: scale(1.4);
   }
 
   .item-card__body:hover .actions-product {
