@@ -11,7 +11,6 @@
 			"descr": "The standard chunk of Lorem Ipsum below for those interested. The standard chunk of for those interested. lorem",
 			"price": "249.99",
 			"salePrice": "249.99",
-			"parentSelector": ".promo",
 			"stars": "4",
 			"classes": [
 				"first"
@@ -25,12 +24,12 @@
 			"descr": "The standard chunk of Lorem Ipsum below for those interested. The standard chunk of for those interested. lorem",
 			"price": "249.99",
 			"salePrice": "249.99",
-			"parentSelector": ".promo",
-			"stars": "4"
+			"stars": "3"
 		}
 	],
 	"show": [
 		{
+			"url": "#",
 			"src": "img/463836_preview1.png",
 			"size": {
 				"width": "270",
@@ -39,12 +38,12 @@
 			"alt": "camera",
 			"title": "THE 4K HDR COMPACT Camera",
 			"sale": "30",
-			"parentSelector": ".show",
 			"classes": [
 				"first"
 			]
 		},
 		{
+			"url": "#",
 			"src": "img/packanafi.png",
 			"size": {
 				"width": "352",
@@ -52,8 +51,7 @@
 			},
 			"alt": "dron",
 			"title": "THE 4K HDR COMPACT DRONE",
-			"sale": "20",
-			"parentSelector": ".show"
+			"sale": "20"
 		}
 	],
 	"requests": []

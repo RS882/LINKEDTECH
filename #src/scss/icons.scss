@@ -24,6 +24,7 @@
 		display: block;
 	}
 }
+
 ._icon-star:before {
 	content: "\e900";
 }
@@ -65,6 +66,9 @@
 }
 ._icon-arrow-down:before {
 	content: "\e90e";
+}
+._icon-heart-solid:before {
+	content: "\e90f";
 }
 ._icon-youtube:before {
 	content: "\e904";

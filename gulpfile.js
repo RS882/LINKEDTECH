@@ -11,6 +11,7 @@ let path = {
 		js: project_folder + "/js/",
 		img: project_folder + "/img/",
 		fonts: project_folder + "/fonts/",
+		json: project_folder + "/json/",
 	},
 	src: {
 		html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
@@ -18,12 +19,14 @@ let path = {
 		js: source_folder + "/js/script.js",
 		img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
 		fonts: source_folder + "/fonts/*.ttf",
+		json: source_folder + "/json/*.*",
 	},
 	watch: {
 		html: source_folder + "/**/*.html",
 		css: source_folder + "/scss/**/*.scss",
 		js: source_folder + "/js/**/*.js",
-		img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}"
+		img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
+		json: source_folder + "/json/*.*",
 	},
 	clean: "./" + project_folder + "/"
 }
@@ -57,6 +60,11 @@ function browserSync(params) {
 		port: 3000,
 		notify: false
 	})
+}
+function json() {
+	return src(path.src.json)
+		.pipe(dest(path.build.json))
+		.pipe(browsersync.stream())
 }
 function html() {
 	return src(path.src.html)
@@ -184,7 +192,7 @@ function fontsStyle(params) {
 					c_fontname = fontname;
 				}
 			}
-		})
+		});
 	}
 }
 function cb() { }
@@ -193,16 +201,18 @@ function watchFiles(params) {
 	gulp.watch([path.watch.css], css);
 	gulp.watch([path.watch.js], js);
 	gulp.watch([path.watch.img], images);
+	gulp.watch([path.watch.json], json);
 }
 function clean(params) {
 	return del(path.clean);
 }
-let build = gulp.series(clean, gulp.parallel(js, css, html, images, fonts), fontsStyle);
+let build = gulp.series(clean, gulp.parallel(js, css, html, json, images, fonts), fontsStyle);
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.fontsStyle = fontsStyle;
 exports.fonts = fonts;
 exports.images = images;
+exports.json = json;
 exports.js = js;
 exports.css = css;
 exports.html = html;

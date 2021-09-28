@@ -21,6 +21,7 @@
 		@include adaptiv-value("margin-bottom", 50, 15, 1);
 		display: flex;
 		justify-content: space-between;
+
 		@media (max-width: $md3+px) {
 			flex-direction: column;
 			width: 100%;
@@ -59,7 +60,8 @@
 		@include adaptiv-value("margin-bottom", 56, 20, 1);
 	}
 
-	&__cart-item {
+	&__cart-item._hide {
+		display: none;
 	}
 	&__view-all {
 		font-weight: 600;
@@ -80,6 +82,25 @@
 				transform: scale(1.4);
 			}
 		}
+		&._hold {
+			position: relative;
+			cursor: auto;
+			opacity: 0.4;
+			@media (any-hover: hover) {
+				&:hover {
+					color: inherit;
+					transform: none;
+				}
+			}
+			&::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
 	}
 }
 
@@ -88,6 +109,7 @@
 	flex-direction: column;
 	position: relative;
 	border: 1px solid rgb(0, 0, 0);
+
 	&__labels {
 		position: absolute;
 		display: flex;
@@ -109,6 +131,15 @@
 	}
 	&__label--new {
 		color: $redcolor;
+		font-weight: 600;
+		font-size: 1.3em;
+		background-color: khaki;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	&__img {
@@ -120,6 +151,12 @@
 	&__img-box {
 		width: 80%;
 		padding: 0px 0px 100% 0px;
+		img {
+			display: none;
+		}
+		img._active {
+			display: block;
+		}
 	}
 
 	&__body {
@@ -163,14 +200,17 @@
 		flex: 1 1 auto;
 		display: flex;
 		flex-wrap: wrap;
+
 		@media (any-hover: none) {
-			z-index: 4;
+			z-index: 3;
+			width: 50%;
 		}
 	}
 
 	&__stars {
 		@media (any-hover: none) {
-			z-index: 4;
+			z-index: 3;
+			width: 50%;
 		}
 	}
 
@@ -193,7 +233,7 @@
 		width: 14px;
 		height: 14px;
 		border-radius: 50%;
-		background-color: $redcolor;
+
 		margin-bottom: 10px;
 		position: relative;
 		&:not(:last-child) {
@@ -213,15 +253,6 @@
 				transform: translate(-3px, -3px);
 			}
 		}
-	}
-
-	&__change-color--1 {
-	}
-
-	&__change-color--2 {
-	}
-
-	&__change-color--3 {
 	}
 }
 
@@ -284,6 +315,7 @@
 		font-size: 12px;
 		@media (any-hover: none) {
 			display: none;
+			//color: rgb(235, 238, 61);
 		}
 	}
 }

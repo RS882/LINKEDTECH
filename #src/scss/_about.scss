@@ -166,6 +166,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		z-index: 4;
 		@media (any-hover: hover) {
 			&:hover {
 				.img-promo__scale {
@@ -196,6 +197,9 @@
 			visibility: visible;
 			color: rgba($color: $blueLigthColor, $alpha: 0.5);
 		}
+	}
+	&__img-box {
+		padding: 0px 0px 100% 0px;
 	}
 }
 
@@ -267,7 +271,6 @@
 				padding: 0px 20px;
 				border-radius: 10px;
 				background-color: $blueLigthColor;
-				border: 1px solid $bluecolor;
 			}
 		}
 	}

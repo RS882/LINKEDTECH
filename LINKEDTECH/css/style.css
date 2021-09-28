@@ -124,6 +124,10 @@
   content: "";
 }
 
+._icon-heart-solid:before {
+  content: "";
+}
+
 ._icon-youtube:before {
   content: "";
 }
@@ -1521,6 +1525,7 @@ body.ie ._ibg img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  z-index: 4;
 }
 
 .img-promo__scale {
@@ -1531,6 +1536,10 @@ body.ie ._ibg img {
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+}
+
+.img-promo__img-box {
+  padding: 0px 0px 100% 0px;
 }
 
 .show {
@@ -1778,6 +1787,10 @@ body.ie ._ibg img {
   margin-bottom: 56px;
 }
 
+.new-product__cart-item._hide {
+  display: none;
+}
+
 .new-product__view-all {
   font-weight: 600;
   line-height: 164.2857142857%;
@@ -1800,6 +1813,21 @@ body.ie ._ibg img {
 .new-product__view-all span {
   margin-left: 10px;
   opacity: 0.6;
+}
+
+.new-product__view-all._hold {
+  position: relative;
+  cursor: auto;
+  opacity: 0.4;
+}
+
+.new-product__view-all._hold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .item-card {
@@ -1839,6 +1867,21 @@ body.ie ._ibg img {
 
 .item-card__label--new {
   color: #c72535;
+  font-weight: 600;
+  font-size: 1.3em;
+  background-color: khaki;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .item-card__img {
@@ -1859,6 +1902,14 @@ body.ie ._ibg img {
 .item-card__img-box {
   width: 80%;
   padding: 0px 0px 100% 0px;
+}
+
+.item-card__img-box img {
+  display: none;
+}
+
+.item-card__img-box img._active {
+  display: block;
 }
 
 .item-card__body {
@@ -1924,7 +1975,6 @@ body.ie ._ibg img {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #c72535;
   margin-bottom: 10px;
   position: relative;
 }
@@ -2639,11 +2689,13 @@ body.ie ._ibg img {
   }
 
   .item-card__prices {
-    z-index: 4;
+    z-index: 3;
+    width: 50%;
   }
 
   .item-card__stars {
-    z-index: 4;
+    z-index: 3;
+    width: 50%;
   }
 
   .actions-product {
@@ -2780,7 +2832,6 @@ body.ie ._ibg img {
     padding: 0px 20px;
     border-radius: 10px;
     background-color: #f4f9fc;
-    border: 1px solid #247cc0;
   }
 
   .new-product__view-all:hover {
@@ -2788,6 +2839,13 @@ body.ie ._ibg img {
     -webkit-transform: scale(1.4);
         -ms-transform: scale(1.4);
             transform: scale(1.4);
+  }
+
+  .new-product__view-all._hold:hover {
+    color: inherit;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
   }
 
   .item-card__body:hover .actions-product {

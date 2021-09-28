@@ -1,0 +1,111 @@
+{
+	"products": [
+		{
+			"id": 4,
+			"url": "#1",
+			"labels": [
+				{
+					"type": "sale",
+					"value": "Get up to 50% off Today Only!"
+				}
+			],
+			"properties": [
+				1,
+				2,
+				3,
+				4
+			],
+			"src": [
+				{
+					"img": "img/Rectangle90.png",
+					"size": {
+						"width": "326",
+						"height": "313"
+					},
+					"alt": "Mackbook Pro",
+					"color": "khaki"
+				},
+				{
+					"img": "img/Rectangle88.png",
+					"size": {
+						"width": "326",
+						"height": "313"
+					},
+					"alt": "Mackbook Pro",
+					"color": "gray"
+				},
+				{
+					"img": "img/Rectangle89.png",
+					"size": {
+						"width": "326",
+						"height": "313"
+					},
+					"alt": "Mackbook Pro",
+					"color": "blue"
+				}
+			],
+			"title": "Mackbook Pro",
+			"price": "249.99",
+			"salePrice": "249.99",
+			"stars": "5"
+		},
+		{
+			"id": 5,
+			"url": "#",
+			"favorit": true,
+			"labels": [
+				{
+					"type": "new",
+					"value": "NEW"
+				},
+				{
+					"type": "sale",
+					"value": "Get up to 50% off Today Only!"
+				}
+			],
+			"properties": [
+				1,
+				3,
+				4
+			],
+			"src": [
+				{
+					"img": "img/Rectangle89.png",
+					"size": {
+						"width": "275",
+						"height": "262"
+					},
+					"alt": "Black_Headphone",
+					"color": ""
+				}
+			],
+			"title": "Black Headphone",
+			"price": "249.99",
+			"stars": "3"
+		},
+		{
+			"id": 6,
+			"url": "#",
+			"labels": "",
+			"properties": [
+				1,
+				2
+			],
+			"src": [
+				{
+					"img": "img/Rectangle88.png",
+					"size": {
+						"width": "266",
+						"height": "253"
+					},
+					"alt": "iPhone_Speaker",
+					"color": ""
+				}
+			],
+			"title": "iPhone Speaker",
+			"price": "249.99",
+			"salePrice": "249.99",
+			"stars": "4"
+		}
+	]
+}
