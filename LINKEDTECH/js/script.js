@@ -244,10 +244,16 @@ function stars() {
 	starBox.forEach(el => {
 		const ammount = el.dataset.star;
 		const span = el.querySelectorAll(`span`);
-		for (let i = 0; i < ammount; i++) {
-			span[i].style.color = `#c72535`;
-		}
+
+		colorStars(ammount, span);
+
 	});
+}
+//======окрашиваем звезді
+function colorStars(numStar, arrStars) {
+	for (let i = 0; i < numStar; i++) {
+		arrStars[i].style.color = `#c72535`;
+	}
 }
 //=======
 // добавляем цвет на переключатели карточек
@@ -269,7 +275,7 @@ const getJson = async (url) => {
 			eve.classList.add(`_hold`);
 			getJson('json/products.json')
 				.then(json => {
-					//console.log(json.products);
+
 					json.products.forEach(obj => {
 						new ItemProduct(obj).render();
 						addColorsBtn();
@@ -278,7 +284,7 @@ const getJson = async (url) => {
 					});
 					const activeTab = document.querySelector(`.new-product__link._active`);
 					addItemHide(activeTab);
-					//eve.remove();
+					eve.remove();
 
 				})
 				.catch(() => alert('Error!'))
@@ -818,18 +824,22 @@ function documentActions(e) {
 		e.preventDefault();
 		changeItemFavorite(targetElem);
 	}
+	// переключатель изменить   на карточке
+	if (targetElem && targetElem.classList.contains(`actions-product__link--change`)) {
+		e.preventDefault();
+
+	}
 
 	// переключатель табов в new product
 	if (targetElem && targetElem.classList.contains(`new-product__link`)) {
 		e.preventDefault();
 		document.querySelectorAll(`.new-product__link`).forEach(el => el.classList.remove(`_active`))
 		targetElem.classList.add(`_active`);
-
 		addItemHide(targetElem);
-
-
-
-
+	}
+	// изменение звездного рейтинга
+	if (targetElem && targetElem.closest(`[data-star]`)) {
+		changeStarReit(targetElem);
 	}
 
 }
@@ -905,6 +915,32 @@ function addItemStatus() {
 	//console.log(userAction);
 };
 //==============================
+function changeStarReit(targetElem) {
+
+	const parent = targetElem.closest(`[data-star]`),
+		stars = parent.querySelectorAll('span');
+	let numStar = 0;
+
+	stars.forEach((el, i) => {
+		el.style.color = ``;
+		if (el == targetElem) {
+			parent.setAttribute(`data-star`, i + 1);
+			numStar = i;
+		}
+	});
+	colorStars(parent.dataset.star, stars);
+
+	if (targetElem.closest(`.item-card__body`)) {
+		const parentGrand = targetElem.closest(`.item-card__body`).querySelector(`.item-card__stars`),
+			stars = parentGrand.querySelectorAll('span');
+		stars.forEach(el => el.style.color = ``);
+		parentGrand.setAttribute(`data-star`, numStar + 1);
+
+		colorStars(parentGrand.dataset.star, stars);
+	}
+
+}
+//=======================
 //let btn = document.querySelectorAll('button[type="submit"],input[type="submit"]');
 let forms = document.querySelectorAll('form');
 if (forms.length > 0) {

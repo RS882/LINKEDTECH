@@ -1508,6 +1508,7 @@ body.ie ._ibg img {
   display: -ms-flexbox;
   display: flex;
   color: #f4f9fc;
+  cursor: pointer;
 }
 
 .img-promo__wrapper {

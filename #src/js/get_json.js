@@ -227,10 +227,16 @@ function stars() {
 	starBox.forEach(el => {
 		const ammount = el.dataset.star;
 		const span = el.querySelectorAll(`span`);
-		for (let i = 0; i < ammount; i++) {
-			span[i].style.color = `#c72535`;
-		}
+
+		colorStars(ammount, span);
+
 	});
+}
+//======окрашиваем звезді
+function colorStars(numStar, arrStars) {
+	for (let i = 0; i < numStar; i++) {
+		arrStars[i].style.color = `#c72535`;
+	}
 }
 //=======
 // добавляем цвет на переключатели карточек
@@ -252,7 +258,7 @@ const getJson = async (url) => {
 			eve.classList.add(`_hold`);
 			getJson('json/products.json')
 				.then(json => {
-					//console.log(json.products);
+
 					json.products.forEach(obj => {
 						new ItemProduct(obj).render();
 						addColorsBtn();
@@ -261,7 +267,7 @@ const getJson = async (url) => {
 					});
 					const activeTab = document.querySelector(`.new-product__link._active`);
 					addItemHide(activeTab);
-					//eve.remove();
+					eve.remove();
 
 				})
 				.catch(() => alert('Error!'))
