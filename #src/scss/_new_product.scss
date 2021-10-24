@@ -3,8 +3,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-
-		border: 1px solid #000;
 	}
 
 	&__subtitle {
@@ -108,7 +106,7 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	border: 1px solid rgb(0, 0, 0);
+	border: 1px solid rgba(0, 0, 0, 0.1);
 
 	&__labels {
 		position: absolute;
@@ -302,6 +300,12 @@
 			}
 		}
 	}
+	&__link--cart {
+		&._hold {
+			opacity: 0.2;
+			cursor: default;
+		}
+	}
 
 	&__prices {
 		display: flex;
@@ -318,4 +322,11 @@
 			//color: rgb(235, 238, 61);
 		}
 	}
+}
+//===================
+._flyimg._ibg {
+	opacity: 1;
+	position: fixed;
+	z-index: 100;
+	transition: all 1s ease 0s;
 }

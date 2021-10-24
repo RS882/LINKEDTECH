@@ -877,6 +877,117 @@ body.ie ._ibg img {
   font-size: 10px;
 }
 
+.cart-header__body {
+  background: #f4f9fc;
+  border: 1px solid #e0e0e0;
+  position: absolute;
+  top: 60px;
+  right: 0%;
+  padding: 15px;
+  width: 300px;
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  -webkit-transform: translate(0px, 20px);
+      -ms-transform: translate(0px, 20px);
+          transform: translate(0px, 20px);
+}
+
+._active .cart-header__body {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translate(0px, 0px);
+      -ms-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+}
+
+.cart-list {
+  overflow: auto;
+  max-height: 200px;
+}
+
+.cart-list__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.cart-list__item:not(:last-child) {
+  margin: 0px 0px 15px 0px;
+}
+
+.cart-list__image {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100px;
+          flex: 0 0 100px;
+  height: 100px;
+}
+
+.cart-list__body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 0px 0px 0px 10px;
+}
+
+.cart-list__title {
+  color: inherit;
+  text-transform: capitalize;
+  font-weight: 600;
+  -webkit-transition: color 0.3s ease 0s;
+  -o-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
+  margin: 0px 0px 0.3571428571em 0px;
+}
+
+.cart-list__quantity {
+  font-size: 12px;
+  margin: 0px 0px 0.4166666667em 0px;
+}
+
+.cart-list__color {
+  font-size: 12px;
+  margin: 0px 0px 0.4166666667em 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cart-list__color-point {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0px 0px 0px 5px;
+}
+
+.cart-list__delete {
+  color: #c72535;
+  font-size: 12px;
+}
+
 .footer {
   background-color: #030d15;
   color: rgba(255, 255, 255, 0.6);
@@ -1738,7 +1849,6 @@ body.ie ._ibg img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid #000;
 }
 
 .new-product__subtitle {
@@ -1840,7 +1950,7 @@ body.ie ._ibg img {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .item-card__labels {
@@ -2052,6 +2162,11 @@ body.ie ._ibg img {
   transition: color, transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
 }
 
+.actions-product__link--cart._hold {
+  opacity: 0.2;
+  cursor: default;
+}
+
 .actions-product__prices {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2062,6 +2177,15 @@ body.ie ._ibg img {
 
 .actions-product__stars {
   font-size: 12px;
+}
+
+._flyimg._ibg {
+  opacity: 1;
+  position: fixed;
+  z-index: 100;
+  -webkit-transition: all 1s ease 0s;
+  -o-transition: all 1s ease 0s;
+  transition: all 1s ease 0s;
 }
 
 @media (min-width: 767.98px) {
@@ -2398,6 +2522,10 @@ body.ie ._ibg img {
 }
 
 @media (max-width: 991.98px) {
+  .cart-header__body {
+    top: 50px;
+  }
+
   .footer__body {
     display: block;
   }
@@ -2545,6 +2673,13 @@ body.ie ._ibg img {
 
   .actions-header__img {
     background-color: #fff;
+  }
+
+  .cart-header__body {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
   }
 
   .icon-menu {
@@ -2777,6 +2912,14 @@ body.ie ._ibg img {
     -webkit-transform: scale(1.4);
         -ms-transform: scale(1.4);
             transform: scale(1.4);
+  }
+
+  .cart-list__title {
+    color: #247cc0;
+  }
+
+  .cart-list__delete {
+    text-decoration: underline;
   }
 
   .menu-footer__link:hover {

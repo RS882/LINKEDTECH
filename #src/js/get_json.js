@@ -43,7 +43,7 @@ class ItemOffer {
 			addClasses([`promo__cart`, `cart-promo`]);
 			elem.innerHTML = `
 			<div class="cart-promo__box">
-				<button type="button" class="cart-promo__cart cart-button _icon-cart"></button>
+				<button type="button" class="cart-promo__cart cart-button cart _icon-cart"></button>
 				<div class="cart-promo__img img-promo">
 					<div class="img-promo__wrapper">
 						<button type="button" class="img-promo__scale _icon-magnifier"></button>
@@ -200,7 +200,7 @@ class ItemProduct {
 						<div class="item-card__actions actions-product">
 							<div class="actions-product__body">
 								<div class="actions-product__links">
-									<button type="button" class="actions-product__link _icon-cart"></button>
+									<button type="button" class="actions-product__link actions-product__link--cart cart _icon-cart"></button>
 									<a href="#" class="actions-product__link  actions-product__link--scale _icon-magnifier"></a>
 									<a href="#" ${itemFavorit} class="actions-product__link actions-product__link--favorit _icon-heart"></a>
 									<a href=${this.url} class="actions-product__link actions-product__link--change _icon-change"></a>
