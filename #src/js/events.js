@@ -106,13 +106,16 @@ function documentActions(e) {
 		addToCart(targetElem, productId, productColor);
 		e.preventDefault();
 	}
+
 	// показать /скрыть корзину с товарами
 	if (targetElem && targetElem.classList.contains(`cart-header__icon`) || targetElem.closest(`.cart-header__icon`)) {
 		if (document.querySelector(`.cart-list`).children.length > 0) {
 			document.querySelector(`.cart-header`).classList.toggle(`_active`);
 		}
 		e.preventDefault();
-	} else if (!targetElem.closest(`.cart-header`) && !targetElem.classList.contains(`actions-product__link--cart`)) {
+	} else if (!targetElem.closest(`.cart-header`)
+		&& !targetElem.classList.contains(`actions-product__link--cart`)
+		&& !targetElem.classList.contains(`item-card__change-color`)) {
 		document.querySelector(`.cart-header`).classList.remove(`_active`);
 	}
 	//удаляем товар из  корзины
@@ -285,40 +288,53 @@ function updateCart(targetElem, productId, productColor, productAdd = true) {
 		cartProduct = document.querySelector(`[data-cart-pid="${productId}"]`),
 		cartList = document.querySelector(`.cart-list`);
 
+
 	//добавление в корзину
 	if (productAdd) {
 		cartQuantity ?
 			cartQuantity.innerHTML = ++cartQuantity.innerHTML :
-			cartIcon.insertAdjacentHTML(`beforeend`, `<span>1</span>`)
+			cartIcon.insertAdjacentHTML(`beforeend`, `<span>1</span>`);
 
-		if (!cartProduct) {
+		const addCartHTML = (productId, productColor) => {
 			const product = document.querySelector(`[data-pid="${productId}"]`),
 				cartProductTitle = product.querySelector(`.item-card__name`).innerHTML,
 				cartProductImg = product.querySelector(`.item-card__img-box`).querySelector(`._active`).outerHTML,
 				cartColor = productColor ?
-					`<div class="cart-list__color">Color: <div class="cart-list__color-point" data-cart-color ="${productColor}"></div> </div>`
+					`<div class="cart-list__color">Color: <div class="cart-list__color-dot" data-cart-color ="${productColor}" style="background: ${productColor};"></div> </div>`
 					: ``;
-
 			cartList.insertAdjacentHTML(`beforeend`,
 				`<li data-cart-pid="${productId}" class ="cart-list__item">
-				<a href="#" class="cart-list__image _ibg">${cartProductImg}</a>
-				<div class="cart-list__body">
-					<a href="#" class="cart-list__title">${cartProductTitle}</a>
-					<div class="cart-list__quantity">Quantity: <span>1</span></div>
-					${cartColor}
-					<a href="#" class="cart-list__delete">Delete</a>
-				</div>
-			</li>`
-			);
+			<a href="#" class="cart-list__image _ibg">${cartProductImg}</a>
+			<div class="cart-list__body">
+				<a href="#" class="cart-list__title">${cartProductTitle}</a>
+				<div class="cart-list__quantity">Quantity: <span>1</span></div>
+				${cartColor}
+				<a href="#" class="cart-list__delete">Delete</a>
+			</div>
+		</li>`);
+		},
+			addQuatity = (cartProduct) => {
+				const cartProductQuantuty = cartProduct.querySelector(`.cart-list__quantity span`);
+				cartProductQuantuty.innerHTML = ++cartProductQuantuty.innerHTML;
+			};
+
+		if (!cartProduct) {
+			addCartHTML(productId, productColor);
+
+		} else if (productColor) {
+			const cartProducts = document.querySelectorAll(`[data-cart-pid="${productId}"]`),
+				arrColor = [];
+			cartProducts.forEach(cartProduct => {
+				const colorCart = cartProduct.querySelector(`.cart-list__color-dot`).dataset.cartColor;
+				if (colorCart == productColor) addQuatity(cartProduct);
+				arrColor.push(colorCart)
+			});
+			if (!arrColor.includes(productColor)) addCartHTML(productId, productColor);
+
 		} else {
-			const cartProductQuantuty = cartProduct.querySelector(`.cart-list__quantity span`);
-			cartProductQuantuty.innerHTML = ++cartProductQuantuty.innerHTML;
+			addQuatity(cartProduct);
 		}
 
-		if (productColor) {
-			const point = cartProduct.querySelector(`.cart-list__color-point`);
-			point.style.background = point.dataset.cartColor;
-		}
 
 		//дает возможность еще добавлять тотже товар
 		targetElem.classList.remove(`_hold`);

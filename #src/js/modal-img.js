@@ -12,7 +12,7 @@ function modalShow(target, parent) {
 		if (target && (target.getAttribute('data-data') !== `` || target.classList.contains(`modal-img__close`))) {
 			modal.classList.remove(`_show`, `_fade`);
 			body.classList.remove(`_lock`);
-			modal.querySelector(`img`).remove();
+			img.remove();
 		}
 	})
 }
