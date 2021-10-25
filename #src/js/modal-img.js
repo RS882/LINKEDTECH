@@ -1,7 +1,6 @@
-function modalShow(target, parent) {
+function modalShow(target, img) {
 
-	const img = target.closest(parent).querySelector(`img`).cloneNode(true),
-		modal = document.querySelector('.modal-img'),
+	const modal = document.querySelector('.modal-img'),
 		body = document.querySelector('body');
 	modal.firstElementChild.append(img);
 	modal.classList.add(`_show`, `_fade`);
@@ -9,10 +8,12 @@ function modalShow(target, parent) {
 
 	modal.addEventListener('click', (e) => {
 		const target = e.target;
-		if (target && (target.getAttribute('data-data') !== `` || target.classList.contains(`modal-img__close`))) {
+
+		if (target && !target.hasAttribute('data-data') && !target.classList.contains(`modal-img__cart`)) {
 			modal.classList.remove(`_show`, `_fade`);
 			body.classList.remove(`_lock`);
 			img.remove();
+			modalTarget = ``;
 		}
 	})
 }

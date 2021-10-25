@@ -1,5 +1,6 @@
 class ItemOffer {
 	constructor(item, {
+		id,
 		src,
 		size,
 		alt,
@@ -12,6 +13,7 @@ class ItemOffer {
 		url,
 		stars,
 		classes }) {
+		this.id = id;
 		this.item = item;
 		this.src = src;
 		this.url = url;
@@ -46,10 +48,10 @@ class ItemOffer {
 				<button type="button" class="cart-promo__cart cart-button cart _icon-cart"></button>
 				<div class="cart-promo__img img-promo">
 					<div class="img-promo__wrapper">
-						<button type="button" class="img-promo__scale _icon-magnifier"></button>
+						<button type="button" class="img-promo__scale scale _icon-magnifier"></button>
 					</div>
 					
-					<div class="img-promo__img-box _ibg">
+					<div data-pid="${this.id}" class="img-promo__img-box _ibg">
 						<picture>
 							<source srcset=${this.src} type="image/webp">
 							<img data-data="" src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
@@ -82,7 +84,7 @@ class ItemOffer {
 						<h3 class="show__title">${this.title}</h3>
 						<a href=${this.url} class="show__btn">Show Now</a>
 					</div>
-					<div class="show__img _ibg">
+					<div  data-pid="${this.id}" class="show__img _ibg">
 					<picture>
 						<source srcset=${this.src} type="image/webp">
 						<img src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
@@ -201,7 +203,7 @@ class ItemProduct {
 							<div class="actions-product__body">
 								<div class="actions-product__links">
 									<button type="button" class="actions-product__link actions-product__link--cart cart _icon-cart"></button>
-									<a href="#" class="actions-product__link  actions-product__link--scale _icon-magnifier"></a>
+									<a href="#" class="actions-product__link  actions-product__link--scale scale _icon-magnifier"></a>
 									<a href="#" ${itemFavorit} class="actions-product__link actions-product__link--favorit _icon-heart"></a>
 									<a href=${this.url} class="actions-product__link actions-product__link--change _icon-change"></a>
 								</div>

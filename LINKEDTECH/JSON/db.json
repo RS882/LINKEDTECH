@@ -1,6 +1,7 @@
 {
 	"promo": [
 		{
+			"id": 2,
 			"src": "img/Rectangle39.png",
 			"size": {
 				"width": "263",
@@ -17,6 +18,7 @@
 			]
 		},
 		{
+			"id": 4,
 			"src": "img/Rectangle53.png",
 			"size": {},
 			"alt": "speaker",
@@ -29,6 +31,7 @@
 	],
 	"show": [
 		{
+			"id": 20,
 			"url": "#",
 			"src": "img/463836_preview1.png",
 			"size": {
@@ -43,6 +46,7 @@
 			]
 		},
 		{
+			"id": 40,
 			"url": "#",
 			"src": "img/packanafi.png",
 			"size": {

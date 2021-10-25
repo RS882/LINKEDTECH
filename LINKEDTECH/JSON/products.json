@@ -81,6 +81,7 @@
 			],
 			"title": "Black Headphone",
 			"price": "249.99",
+			"salePrice": "249.99",
 			"stars": "3"
 		},
 		{
@@ -104,7 +105,6 @@
 			],
 			"title": "iPhone Speaker",
 			"price": "249.99",
-			"salePrice": "249.99",
 			"stars": "4"
 		}
 	]
