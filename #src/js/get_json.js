@@ -40,6 +40,7 @@ class ItemOffer {
 				if (this.classes.length) clss.add(...this.classes);
 				Array.from(clss).forEach(cls => elem.classList.add(cls));
 			};
+		elem.setAttribute(`data-pid`, `${this.id}`)
 
 		if (this.item.includes(`promo`)) {
 			addClasses([`promo__cart`, `cart-promo`]);
@@ -51,7 +52,7 @@ class ItemOffer {
 						<button type="button" class="img-promo__scale scale _icon-magnifier"></button>
 					</div>
 					
-					<div data-pid="${this.id}" class="img-promo__img-box _ibg">
+					<div d class="img-promo__img-box _ibg">
 						<picture>
 							<source srcset=${this.src} type="image/webp">
 							<img data-data="" src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>

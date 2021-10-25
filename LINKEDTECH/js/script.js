@@ -57,6 +57,7 @@ class ItemOffer {
 				if (this.classes.length) clss.add(...this.classes);
 				Array.from(clss).forEach(cls => elem.classList.add(cls));
 			};
+		elem.setAttribute(`data-pid`, `${this.id}`)
 
 		if (this.item.includes(`promo`)) {
 			addClasses([`promo__cart`, `cart-promo`]);
@@ -68,7 +69,7 @@ class ItemOffer {
 						<button type="button" class="img-promo__scale scale _icon-magnifier"></button>
 					</div>
 					
-					<div data-pid="${this.id}" class="img-promo__img-box _ibg">
+					<div d class="img-promo__img-box _ibg">
 						<picture>
 							<source srcset=${this.src} type="image/webp">
 							<img data-data="" src=${this.src} width=${this.size.width} height=${this.size.height} alt=${this.alt}>
@@ -725,7 +726,7 @@ document.addEventListener('keydown', function (e) {
 	}
 });
 
-function modalShow(target, img) {
+function modalShow(img) {
 
 	const modal = document.querySelector('.modal-img'),
 		body = document.querySelector('body');
@@ -801,19 +802,14 @@ function documentActions(e) {
 	}
 	//================
 	// модальное окно просмотр изображения
-	//
-	if (targetElem && targetElem.classList.contains(`scale`)) {
-		let img;
-		if (targetElem.classList.contains(`actions-product__link--scale`)) {
-			img = targetElem.closest(`.item-card`).querySelector(`.item-card__img-box`).querySelector(`._active`).cloneNode(true);
-		}
-		if (targetElem.classList.contains(`img-promo__scale`)) {
-			img = targetElem.closest(`.img-promo`).querySelector(`[data-data]`).cloneNode(true);
-		}
-		e.preventDefault();
-		modalShow(targetElem, img);
-		modalTarget = targetElem;
 
+	if (targetElem && targetElem.classList.contains(`scale`)) {
+		const targetPid = targetElem.closest(`[data-pid]`).dataset.pid,
+			targetParent = document.querySelector(`.item-card[data-pid="${targetPid}"]`),
+			img = targetParent.querySelector(`.item-card__img-box`).querySelector(`._active`).cloneNode(true);
+		e.preventDefault();
+		modalShow(img);
+		modalTarget = targetElem;
 	}
 
 	// показ всех товаров в new product
@@ -850,6 +846,7 @@ function documentActions(e) {
 	if (targetElem && targetElem.closest(`[data-star]`)) {
 		changeStarReit(targetElem);
 	}
+
 	//добавление товара в корзину 
 	if (targetElem && targetElem.classList.contains(`cart`)) {
 		let productElem;
@@ -859,8 +856,17 @@ function documentActions(e) {
 		}
 		//добавление товара в корзину из modal
 		if (targetElem.classList.contains(`modal-img__cart`)) {
-			productElem = modalTarget.closest(`.item-card`);
+			const targetPid = modalTarget.closest(`[data-pid]`).dataset.pid;
+			productElem = document.querySelector(`.item-card[data-pid="${targetPid}"]`);
 		}
+		//добавляем товар в корзину из promo
+		if (targetElem.classList.contains(`cart-promo__cart`)) {
+			const targetPid = targetElem.closest(`[data-pid]`).dataset.pid;
+			productElem = document.querySelector(`.item-card[data-pid="${targetPid}"]`);
+			console.log(productElem);
+		}
+
+
 		const productId = productElem.dataset.pid,
 			productColor = productElem.querySelector(`.item-card__img-box`).querySelector(`._active`).dataset.c;
 
@@ -997,13 +1003,18 @@ function addToCart(targetElem, productId, productColor) {
 		targetElem.classList.add(`_fly`);
 
 		const cart = document.querySelector(`.cart-header__icon`),
-			product = document.querySelector(`[data-pid="${productId}"]`);
+			product = document.querySelector(`.item-card[data-pid="${productId}"]`);
 		let productImg;
+
+
 		if (targetElem.classList.contains(`actions-product__link--cart`)) {
 			productImg = product.querySelector(`.item-card__img-box`).querySelector(`._active`);
 		}
 		if (targetElem.classList.contains(`modal-img__cart`)) {
 			productImg = targetElem.closest(`.modal-img__wrapper`).querySelector(`[data-data]`)
+		}
+		if (targetElem.classList.contains(`cart-promo__cart`)) {
+			productImg = targetElem.closest(`.cart-promo__box`).querySelector(`[data-data]`)
 		}
 
 		const productImgFly = productImg.cloneNode(true),
@@ -1064,7 +1075,7 @@ function updateCart(targetElem, productId, productColor, productAdd = true) {
 			cartIcon.insertAdjacentHTML(`beforeend`, `<span>1</span>`);
 
 		const addCartHTML = (productId, productColor) => {
-			const product = document.querySelector(`[data-pid="${productId}"]`),
+			const product = document.querySelector(`.item-card[data-pid="${productId}"]`),
 				cartProductTitle = product.querySelector(`.item-card__name`).innerHTML,
 				cartProductImg = product.querySelector(`.item-card__img-box`).querySelector(`._active`).outerHTML,
 				cartColor = productColor ?

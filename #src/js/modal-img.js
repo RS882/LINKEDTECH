@@ -1,4 +1,4 @@
-function modalShow(target, img) {
+function modalShow(img) {
 
 	const modal = document.querySelector('.modal-img'),
 		body = document.querySelector('body');
