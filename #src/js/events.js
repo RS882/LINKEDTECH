@@ -1,4 +1,3 @@
-
 window.addEventListener(`DOMContentLoaded`, () => {
 	let modalTarget;
 	document.addEventListener(`click`, documentActions);
@@ -56,12 +55,62 @@ function documentActions(e) {
 	// модальное окно просмотр изображения
 
 	if (targetElem && targetElem.classList.contains(`scale`)) {
-		const targetPid = targetElem.closest(`[data-pid]`).dataset.pid,
-			targetParent = document.querySelector(`.item-card[data-pid="${targetPid}"]`),
-			img = targetParent.querySelector(`.item-card__img-box`).querySelector(`._active`).cloneNode(true);
 		e.preventDefault();
-		modalShow(img);
+		const targetPid = targetElem.closest(`[data-pid]`).dataset.pid;
+		let targetParent = document.querySelector(`.item-card[data-pid="${targetPid}"]`);
+		if (!targetParent) {
+			targetParent = document.querySelector(`.item-card-new[data-pid="${targetPid}"]`);
+		}
+		if (!targetParent) {
+
+			let arrItem = [];
+			getJson('json/products.json')
+				.then(json => {
+					json.products.forEach(el => arrItem.push(el))
+
+					const img = document.createElement(`img`);
+					img.setAttribute(`data-data`, ``);
+					img.classList.add(`_active`);
+
+					arrItem.forEach(item => {
+						if (+item.id == +targetPid) {
+							if (item.src.length > 1) {
+								item.src.forEach(ele => {
+									if (ele.color === targetElem.dataset.c) {
+										img.setAttribute(`src`, `${ele.img}`);
+										img.setAttribute(`width`, `${ele.size.width}`);
+										img.setAttribute(`height`, `${ele.size.height}`);
+										img.setAttribute(`alt`, `${ele.alt}`);
+									}
+								});
+
+							} else {
+								img.setAttribute(`src`, `${item.src[0].img}`);
+								img.setAttribute(`width`, `${item.src[0].size.width}`);
+								img.setAttribute(`height`, `${item.src[0].size.height}`);
+								img.setAttribute(`alt`, `${item.src[0].alt}`);
+							}
+						}
+					});
+					modalShow(img);
+				})
+				.catch(() => alert('Error!'));
+
+
+
+		} else {
+			let targetImgBox = targetParent.querySelector(`.item-card__img-box`);
+			if (!targetImgBox) {
+				targetImgBox = targetParent.querySelector(`.item-card-new__img-box`);
+			}
+			const img = !targetElem.closest(`[data-c]`) ?
+				targetImgBox.querySelector(`._active`).cloneNode(true) :
+				targetImgBox.querySelector(`[data-c="${targetElem.dataset.c}"]`).cloneNode(true);
+			modalShow(img);
+		}
+
 		modalTarget = targetElem;
+
 	}
 
 	// показ всех товаров в new product
@@ -77,12 +126,14 @@ function documentActions(e) {
 		changeItemColor(targetElem);
 	}
 	// переключатель избранное  на карточке
-	if (targetElem && targetElem.classList.contains(`actions-product__link--favorit`)) {
+	if (targetElem && targetElem.classList.contains(`actions-product__link--favorit`)
+		|| targetElem.classList.contains(`actions-product-new__link--favorit`)) {
 		e.preventDefault();
 		changeItemFavorite(targetElem);
 	}
 	// переключатель изменить   на карточке
-	if (targetElem && targetElem.classList.contains(`actions-product__link--change`)) {
+	if (targetElem && targetElem.classList.contains(`actions-product__link--change`)
+		|| targetElem.classList.contains(`actions-product-new__link--change`)) {
 		e.preventDefault();
 
 	}
@@ -106,21 +157,30 @@ function documentActions(e) {
 		if (targetElem.classList.contains(`actions-product__link--cart`)) {
 			productElem = targetElem.closest(`.item-card`);
 		}
+		//добавление товара в корзину из new shop
+		if (targetElem.classList.contains(`actions-product-new__link--cart`)) {
+			productElem = targetElem.closest(`.item-card-new`);
+			console.log(productElem);
+		}
 		//добавление товара в корзину из modal
 		if (targetElem.classList.contains(`modal-img__cart`)) {
 			const targetPid = modalTarget.closest(`[data-pid]`).dataset.pid;
 			productElem = document.querySelector(`.item-card[data-pid="${targetPid}"]`);
+			if (!productElem) {
+				productElem = document.querySelector(`.item-card-new[data-pid="${targetPid}"]`);
+			}
 		}
 		//добавляем товар в корзину из promo
 		if (targetElem.classList.contains(`cart-promo__cart`)) {
 			const targetPid = targetElem.closest(`[data-pid]`).dataset.pid;
 			productElem = document.querySelector(`.item-card[data-pid="${targetPid}"]`);
-			console.log(productElem);
 		}
 
 
 		const productId = productElem.dataset.pid,
-			productColor = productElem.querySelector(`.item-card__img-box`).querySelector(`._active`).dataset.c;
+			productColor =
+				productElem.querySelector(`.item-card__img-box`) ?
+					productElem.querySelector(`.item-card__img-box`).querySelector(`._active`).dataset.c : ``;
 
 		addToCart(targetElem, productId, productColor);
 		e.preventDefault();
@@ -254,13 +314,17 @@ function addToCart(targetElem, productId, productColor) {
 		targetElem.classList.add(`_hold`);
 		targetElem.classList.add(`_fly`);
 
-		const cart = document.querySelector(`.cart-header__icon`),
-			product = document.querySelector(`.item-card[data-pid="${productId}"]`);
+		const cart = document.querySelector(`.cart-header__icon`);
 		let productImg;
 
 
 		if (targetElem.classList.contains(`actions-product__link--cart`)) {
+			const product = document.querySelector(`.item-card[data-pid="${productId}"]`);
 			productImg = product.querySelector(`.item-card__img-box`).querySelector(`._active`);
+		}
+		if (targetElem.classList.contains(`actions-product-new__link--cart`)) {
+			const product = document.querySelector(`.item-card-new[data-pid="${productId}"]`);
+			productImg = product.querySelector(`.item-card-new__img-box`).querySelector(`._active`);
 		}
 		if (targetElem.classList.contains(`modal-img__cart`)) {
 			productImg = targetElem.closest(`.modal-img__wrapper`).querySelector(`[data-data]`)
@@ -325,14 +389,26 @@ function updateCart(targetElem, productId, productColor, productAdd = true) {
 		cartQuantity ?
 			cartQuantity.innerHTML = ++cartQuantity.innerHTML :
 			cartIcon.insertAdjacentHTML(`beforeend`, `<span>1</span>`);
+		let product,
+			cartProductTitle,
+			cartProductImg;
 
 		const addCartHTML = (productId, productColor) => {
-			const product = document.querySelector(`.item-card[data-pid="${productId}"]`),
-				cartProductTitle = product.querySelector(`.item-card__name`).innerHTML,
-				cartProductImg = product.querySelector(`.item-card__img-box`).querySelector(`._active`).outerHTML,
-				cartColor = productColor ?
-					`<div class="cart-list__color">Color: <div class="cart-list__color-dot" data-cart-color ="${productColor}" style="background: ${productColor};"></div> </div>`
-					: ``;
+
+			if (document.querySelector(`.item-card[data-pid="${productId}"]`)) {
+				product = document.querySelector(`.item-card[data-pid="${productId}"]`);
+				cartProductTitle = product.querySelector(`.item-card__name`).innerHTML;
+				cartProductImg = product.querySelector(`.item-card__img-box`).querySelector(`._active`).outerHTML;
+			} else if (document.querySelector(`.item-card-new[data-pid="${productId}"]`)) {
+				product = document.querySelector(`.item-card-new[data-pid="${productId}"]`);
+				cartProductTitle = product.querySelector(`[data-data]`).getAttribute(`alt`);
+				cartProductImg = product.querySelector(`.item-card-new__img-box`).querySelector(`._active`).outerHTML;
+			}
+
+			const cartColor = productColor ?
+				`<div class="cart-list__color">Color: <div class="cart-list__color-dot" data-cart-color ="${productColor}" style="background: ${productColor};"></div> </div>`
+				: ``;
+
 			cartList.insertAdjacentHTML(`beforeend`,
 				`<li data-cart-pid="${productId}" class ="cart-list__item">
 			<a href="#" class="cart-list__image _ibg">${cartProductImg}</a>
