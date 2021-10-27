@@ -72,21 +72,6 @@
 	}
 
 	&__btn {
-		@include adaptiv-value("width", 151, 100, 1);
-		@include adaptiv-value("height", 58, 40, 1);
-		background-color: $bluecolor;
-		color: #fff;
-		font-weight: 600;
-		line-height: 26px/16px * 100%;
-		text-transform: uppercase;
-		margin-right: 30px;
-		transition: transform 0.3s ease 0s;
-
-		@media (any-hover: hover) {
-			&:hover {
-				transform: scale(1.2);
-			}
-		}
 	}
 
 	&__price {
@@ -101,6 +86,23 @@
 		line-height: 169%;
 		text-decoration-line: line-through;
 		color: rgba($color: $maincolor, $alpha: 0.5);
+	}
+}
+.btn {
+	@include adaptiv-value("width", 151, 100, 1);
+	@include adaptiv-value("height", 58, 40, 1);
+	background-color: $bluecolor;
+	color: #fff;
+	font-weight: 600;
+	line-height: 26px/16px * 100%;
+	text-transform: uppercase;
+	margin-right: 30px;
+	transition: transform 0.3s ease 0s;
+
+	@media (any-hover: hover) {
+		&:hover {
+			transform: scale(1.2);
+		}
 	}
 }
 .img {
