@@ -2,6 +2,10 @@
 	background-color: $blueLigthColor;
 	&__container {
 		display: flex;
+		flex-direction: column;
+		@media (min-width: $md2+px) {
+			flex-direction: row;
+		}
 	}
 
 	&__titles {
@@ -36,6 +40,8 @@
 	&__subsсribe {
 		flex: 1 1 50%;
 		align-self: center;
+
+		margin-bottom: 20px;
 	}
 }
 
@@ -74,13 +80,5 @@
 
 	&__button {
 		@include adaptiv-value("height", 50, 40, 1);
-		// color: rgba($color: #fff, $alpha: 0.6);
-		// font-size: 25px;
-		// transition: color 0.3s ease 0s;
-		// @media (any-hover: hover) {
-		// 	&:hover {
-		// 		color: $bluecolor;
-		// 	}
-		// }
 	}
 }
